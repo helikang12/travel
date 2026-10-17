@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="천천히 둘러보고, 오래 기억할 여행을 만나보세요. 여행지와 주변 숙소를 함께 찾아보세요.">
+  <title>느린여행 — 여행지와 머물 곳을 한눈에</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/public.css">
+  <script src="js/home.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="느린여행 홈"><span class="brand-mark" aria-hidden="true">ㅅ</span><span>느린여행</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="메뉴 열기"><span></span><span></span></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="주 메뉴">
+        <a href="#destinations">여행지</a><a href="#stays">숙소</a><a href="#guide">여행 가이드</a>
+      </nav>
+      <div class="header-actions" data-auth-actions>
+        <a class="header-reserve" href="html/booking-form.html" data-reservation-link>예약</a>
+        <a class="header-signup" href="html/signup.html" data-auth-signup>회원가입</a>
+        <a class="header-login" href="html/login.html" data-auth-login>로그인</a>
+        <button class="header-logout" type="button" data-auth-logout hidden>로그아웃</button>
+        <a class="header-admin" href="html/admin-login.html" data-auth-admin>관리자</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-photo" role="img" aria-label="노을이 비치는 제주 바닷가 풍경"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow light">YOUR NEXT SLOW GETAWAY</p>
+        <h1 id="hero-title">조금 천천히,<br>더 깊이 만나는 여행</h1>
+        <p class="hero-copy">가고 싶은 곳부터 머물고 싶은 곳까지<br class="mobile-only"> 당신의 속도에 맞춰 찾아보세요.</p>
+        <form class="search-panel" id="destination-search">
+          <label class="search-field" for="place-query"><span class="field-icon" aria-hidden="true">⌕</span><span><span class="field-label">어디로 떠나세요?</span><input id="place-query" name="q" type="search" placeholder="여행지나 지역을 검색" autocomplete="off"></span></label>
+          <label class="search-field date-field" for="travel-date"><span class="field-icon" aria-hidden="true">▦</span><span><span class="field-label">언제 떠나세요?</span><input id="travel-date" name="date" type="text" placeholder="날짜는 나중에 정해도 좋아요" readonly></span></label>
+          <button class="search-button" type="submit">여행지 찾기 <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="search-note" id="search-message" aria-live="polite">날짜와 객실 가능 여부는 숙소에 직접 확인해 주세요.</p>
+      </div>
+      <div class="hero-caption"><span>01 / 04</span><span class="caption-line"></span><span>JEJU, KOREA</span></div>
+    </section>
+
+    <section class="section destinations-section" id="destinations" aria-labelledby="destinations-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">PLACES TO WANDER</p><h2 id="destinations-title">이번 계절, 떠나기 좋은 곳</h2><p class="section-description">익숙한 풍경도 새로운 시선으로 만나보세요.</p></div>
+        <a class="text-link" href="#destinations" data-show-all>여행지 둘러보기 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="destination-grid" id="destination-grid">
+        <article class="destination-card" data-search="제주 제주도 서귀포 바다 섬">
+          <a class="destination-image image-jeju" href="#stays" aria-label="제주 주변 숙소 보기"><span class="image-tag">바다와 함께</span><span class="image-arrow" aria-hidden="true">↗</span></a>
+          <div class="card-meta"><span>제주특별자치도</span><span>섬 여행</span></div><h3>제주, 바람이 쉬어가는 섬</h3><p>바다 곁을 걷고, 작은 마을에 머무는 시간</p>
+        </article>
+        <article class="destination-card" data-search="강릉 강원도 동해 바다 커피">
+          <a class="destination-image image-gangneung" href="#stays" aria-label="강릉 주변 숙소 보기"><span class="image-tag">파도 소리</span><span class="image-arrow" aria-hidden="true">↗</span></a>
+          <div class="card-meta"><span>강원도 강릉</span><span>바다 여행</span></div><h3>강릉, 파도 따라 걷는 하루</h3><p>푸른 바다와 커피 향이 머무는 동네</p>
+        </article>
+        <article class="destination-card" data-search="경주 경상북도 역사 한옥 문화">
+          <a class="destination-image image-gyeongju" href="#stays" aria-label="경주 주변 숙소 보기"><span class="image-tag">오래된 이야기</span><span class="image-arrow" aria-hidden="true">↗</span></a>
+          <div class="card-meta"><span>경상북도 경주</span><span>문화 여행</span></div><h3>경주, 시간이 포개진 도시</h3><p>천천히 걸으며 발견하는 오래된 이야기</p>
+        </article>
+        <article class="destination-card" data-search="남해 경상남도 섬 바다 마을">
+          <a class="destination-image image-namhae" href="#stays" aria-label="남해 주변 숙소 보기"><span class="image-tag">초록의 쉼표</span><span class="image-arrow" aria-hidden="true">↗</span></a>
+          <div class="card-meta"><span>경상남도 남해</span><span>자연 여행</span></div><h3>남해, 초록으로 물든 바다</h3><p>작은 항구와 다랭이논을 따라가는 길</p>
+        </article>
+      </div>
+      <p class="empty-state" id="empty-state" hidden>검색한 여행지를 찾지 못했어요. 다른 지역명으로 검색해 주세요.</p>
+    </section>
+
+    <section class="stay-feature" id="stays" aria-labelledby="stay-title">
+      <div class="stay-photo" role="img" aria-label="숲속의 아늑한 숙소"></div>
+      <div class="stay-copy"><p class="eyebrow light">A PLACE TO STAY</p><h2 id="stay-title">여행의 기억은<br>머문 곳에서 이어져요</h2><p>여행지 주변의 작은 숙소를 둘러보세요.<br>마음에 드는 곳을 찾았다면 숙소에 문의해<br class="desktop-only"> 날짜와 이용 가능 여부를 확인할 수 있어요.</p><a class="button button-light" href="#destinations">여행지와 숙소 살펴보기 <span aria-hidden="true">→</span></a><span class="stay-index">STAY A LITTLE LONGER&nbsp; · &nbsp;SLOW TRAVEL</span></div>
+    </section>
+
+    <section class="guide-section" id="guide" aria-labelledby="guide-title">
+      <div class="guide-icon" aria-hidden="true">✳</div><div><p class="eyebrow">TRAVEL AT YOUR PACE</p><h2 id="guide-title">좋은 여행은, 서두르지 않는 것부터</h2><p>마음에 드는 장소를 고르고 주변 숙소를 살펴보세요. 예약은 숙소의 날짜별 가능 여부와 최종 요금을 확인한 뒤 진행됩니다.</p></div><a class="round-link" href="#destinations" aria-label="추천 여행지로 이동">↗</a>
+    </section>
+
+    <section class="newsletter" id="newsletter"><p class="eyebrow light">A NOTE FROM THE ROAD</p><h2>다음 여행의 힌트를<br class="mobile-only"> 받아보세요</h2><p>새로운 여행지와 계절의 이야기를 전해드릴게요.</p><form id="newsletter-form"><label class="visually-hidden" for="email-address">이메일 주소</label><input id="email-address" type="email" placeholder="이메일 주소를 입력해 주세요" required><button type="submit">소식 받아보기 <span aria-hidden="true">→</span></button></form><p class="newsletter-message" id="newsletter-message" aria-live="polite">현재 구독 신청은 화면 시안이며, 전송되지 않습니다.</p></section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-top"><a class="brand footer-brand" href="index.html"><span class="brand-mark" aria-hidden="true">ㅅ</span><span>느린여행</span></a><p>한 걸음씩, 나다운 여행</p><a href="#main" class="back-top">맨 위로 ↑</a></div><div class="footer-bottom"><span>© 2026 느린여행</span><span>여행지와 숙소 정보는 안내용 예시입니다.</span><a href="mailto:hello@example.com">문의하기</a></div></footer>
+  <button class="scroll-top" type="button" aria-label="화면 맨 위로 이동" title="맨 위로">↑</button>
+  <script type="module" src="js/auth-ui.js"></script>
+</body>
+</html>

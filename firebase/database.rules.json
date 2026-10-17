@@ -1,0 +1,41 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "destinations": {
+      ".read": "(query.orderByChild == 'status' && query.equalTo == 'published') || (auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER')",
+      ".indexOn": ["status", "region"],
+      "$destinationId": {
+        ".read": "data.child('status').val() == 'published' || (auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER')",
+        ".write": "auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER'",
+        ".validate": "newData.hasChildren(['name', 'region', 'address', 'summary', 'description', 'imageUrl', 'status', 'createdAt', 'updatedAt'])"
+      }
+    },
+    "stays": {
+      ".read": "(query.orderByChild == 'status' && query.equalTo == 'active') || (auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER')",
+      ".indexOn": ["status", "destinationId"],
+      "$stayId": {
+        ".read": "data.child('status').val() == 'active' || (auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER')",
+        ".write": "auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER'",
+        ".validate": "newData.hasChildren(['destinationId', 'name', 'address', 'description', 'phone', 'pricePerNight', 'maxGuests', 'imageUrl', 'status', 'createdAt', 'updatedAt'])"
+      }
+    },
+    "members": {
+      ".read": "auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER'",
+      "$uid": {
+        ".read": "auth != null && (auth.uid == $uid || auth.uid == 'ADMIN_UID_PLACEHOLDER')",
+        ".write": "auth != null && (auth.uid == 'ADMIN_UID_PLACEHOLDER' || auth.uid == $uid)",
+        ".validate": "newData.hasChildren(['name', 'email', 'phone', 'status', 'createdAt', 'updatedAt']) && (auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER' || (newData.child('status').val() == 'active' && (!data.exists() || newData.child('status').val() == data.child('status').val())))"
+      }
+    },
+    "reservations": {
+      ".read": "auth != null && (auth.uid == 'ADMIN_UID_PLACEHOLDER' || (root.child('members').child(auth.uid).child('status').val() == 'active' && query.orderByChild == 'memberId' && query.equalTo == auth.uid))",
+      ".indexOn": ["memberId", "status", "checkIn"],
+      "$reservationId": {
+        ".read": "auth != null && (auth.uid == 'ADMIN_UID_PLACEHOLDER' || (root.child('members').child(auth.uid).child('status').val() == 'active' && data.child('memberId').val() == auth.uid))",
+        ".write": "auth != null && (auth.uid == 'ADMIN_UID_PLACEHOLDER' || (root.child('members').child(auth.uid).child('status').val() == 'active' && ((!data.exists() && newData.child('memberId').val() == auth.uid && newData.child('status').val() == 'requested') || (data.child('memberId').val() == auth.uid && data.child('status').val() == 'requested' && newData.child('status').val() == 'cancel_requested' && newData.child('memberId').val() == data.child('memberId').val() && newData.child('stayId').val() == data.child('stayId').val() && newData.child('checkIn').val() == data.child('checkIn').val() && newData.child('checkOut').val() == data.child('checkOut').val() && newData.child('guestCount').val() == data.child('guestCount').val() && newData.child('nightlyPriceAtBooking').val() == data.child('nightlyPriceAtBooking').val() && newData.child('totalPrice').val() == data.child('totalPrice').val() && newData.child('createdAt').val() == data.child('createdAt').val()))))",
+        ".validate": "newData.hasChildren(['memberId', 'stayId', 'checkIn', 'checkOut', 'guestCount', 'nightlyPriceAtBooking', 'totalPrice', 'status', 'createdAt', 'updatedAt']) && newData.child('checkIn').val() < newData.child('checkOut').val() && (auth != null && auth.uid == 'ADMIN_UID_PLACEHOLDER' || newData.child('status').val() == 'requested' || newData.child('status').val() == 'cancel_requested')"
+      }
+    }
+  }
+}
